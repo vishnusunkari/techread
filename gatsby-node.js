@@ -6,6 +6,8 @@ const startCase = require('lodash.startcase');
 
 const config = require('./config');
 
+const fs = require("fs");
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -106,4 +108,22 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       value: node.frontmatter.title || startCase(parent.name),
     });
   }
+};
+
+exports.onPreInit = () => {
+  if (process.argv[2] === "build") {
+    fs.rmdirSync(path.join(__dirname, "docs"), { recursive: true })
+    fs.renameSync(
+      path.join(__dirname, "public"),
+      path.join(__dirname, "public_dev")
+    )
+  }
+};
+
+exports.onPostBuild = () => {
+  fs.renameSync(path.join(__dirname, "public"), path.join(__dirname, "docs"))
+  fs.renameSync(
+    path.join(__dirname, "public_dev"),
+    path.join(__dirname, "public")
+  )
 };
