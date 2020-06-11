@@ -63,7 +63,6 @@
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
     "postinstall": ""
-
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
