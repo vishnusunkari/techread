@@ -1,10 +1,12 @@
 ---
 title: "Elastic Load Balancing"
 metaTitle: "AWS Elastic Load Balancing"
-metaDescription: "What is Elastic Load Balancing "
+metaDescription: "What is Elastic Load Balancing? Elastic Load Balancing means automatically distributing 
+incoming application traffic across multiple server instances."
 ---
 ### Elastic Load Balancing  
-Supports Cross-zone load balancing meaning balance traffic to instances located across multiple
+Elastic Load Balancing means automatically distributing incoming application traffic across
+multiple server instances. Amazon Elastic Load balancers support cross-zone load balancing meaning balance traffic to instances located across multiple
 AZs (Availability Zone). This allows for High Availability and Fault tolerant architecture.
 
 Supports ELB cookie stickiness. ELB creates a cookie, named *AWSELB*, that is used to map the 
@@ -14,8 +16,8 @@ session to the instance. Supports application generated cookie stickiness.
 between a client and a specific network server for the duration of a session.
 
 ELB has a DNS name. For Route53 integration with ELB :   
-1. create a Record Set CNAME in Route53 with website name and value is the DNS name of the ELB or  
-2. create an alias record that points to your ELB
+1. Create a Record Set CNAME in Route53 with website name and value is the DNS name of the ELB or  
+2. Create an alias record that points to your ELB.
 
 **SSL offloading**:  You can have http/https at ELB and http/https for each individual node.
 https at ELB and http for each individual node is SSL offloading that means you secured

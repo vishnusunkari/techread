@@ -1,4 +1,4 @@
-# techread
+# techgry
 
 Based on the template gatsby-techread-starter.
 

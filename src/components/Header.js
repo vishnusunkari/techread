@@ -90,7 +90,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
         },
       } = data;
 
-      const finalLogoLink = logo.link !== '' ? logo.link : 'https://hasura.io/';
+      const finalLogoLink = logo.link !== '' ? logo.link : '';
 
       return (
         <div className={'navBarWrapper'}>
@@ -99,7 +99,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
               <Link to={finalLogoLink} className={'navBarBrand'}>
                 {/*<img
                   className={'img-responsive displayInline'}
-                  src={logo.image !== '' ? logo.image : logoImg}
+                  src={logo.image = logoImg}
                   alt={'logo'}
                 />*/}
               </Link>
@@ -108,12 +108,18 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                 dangerouslySetInnerHTML={{ __html: headerTitle }}
               />
             </div>
-            {config.header.social ? (
+            <div className={'socialWrapper'}>
+              <DarkModeSwitch
+                isDarkThemeActive={isDarkThemeActive}
+                toggleActiveTheme={toggleActiveTheme}
+              />
+            </div>
+            {/*config.header.social ? (
               <ul
                 className="socialWrapper visibleMobileView"
                 dangerouslySetInnerHTML={{ __html: config.header.social }}
               ></ul>
-            ) : null}
+            ) : null*/}
             {isSearchEnabled ? (
               <div className={'searchWrapper hiddenMobile navBarUL'}>
                 <LoadableComponent collapse={true} indices={searchIndices} />
@@ -132,7 +138,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                         <a
                           className="sidebarLink"
                           href={link.link}
-                          target="_blank"
+                          target="_self"
                           rel="noopener noreferrer"
                           dangerouslySetInnerHTML={{ __html: link.text }}
                         />
@@ -148,7 +154,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                   </li>
                 ) : null}
 
-                {tweetText !== '' ? (
+                {/*tweetText !== '' ? (
                   <li>
                     <a
                       href={'https://twitter.com/intent/tweet?&text=' + tweetText}
@@ -169,7 +175,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                       dangerouslySetInnerHTML={{ __html: config.header.social }}
                     ></ul>
                   </li>
-                ) : null}
+                ) : null */}
                 {githubUrl !== '' ? (
                   <li className={'githubBtn'}>
                     {/* <GitHubButton
@@ -181,12 +187,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                     </GitHubButton> */}
                   </li>
                 ) : null}
-                <li>
-                  <DarkModeSwitch
-                    isDarkThemeActive={isDarkThemeActive}
-                    toggleActiveTheme={toggleActiveTheme}
-                  />
-                </li>
+                
               </ul>
             </div>
           </nav>

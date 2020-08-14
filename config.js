@@ -6,15 +6,15 @@ const config = {
     trailingSlash: false,
   },
   header: {
-    logo: './images/arlogo.svg',
-    logoLink: 'http://www.vishnusunkari.com',
+    logo: '',
+    logoLink: '',
     title:
-      'TECH <span class="text-primary">READ</span>',
+      'TECH <span class="text-primary">GRY</span>',
     githubUrl: '',
     helpUrl: '',
     tweetText: '',
     social: `<li>
-		    <a href="https://twitter.com/vishnu018" target="_blank" rel="noopener">
+		    <a href="https://twitter.com/techgry1" target="_blank" rel="noopener">
 		      <div class="twitterBtn">
 		        <img src='https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/twitter-brands-block.svg' alt={'Discord'}/>
 		      </div>
@@ -33,30 +33,33 @@ const config = {
   },
   sidebar: {
     forcedNavOrder: [
-      '/introduction', // add trailing slash if enabled above
-      '/codeblock',
+      '/index',
+      '/pages/about',// add trailing slash if enabled above
+      '/AWS',
+      '/Java',
+      '/DataStructures'
     ],
     collapsedNav: [
-      '/codeblock', // add trailing slash if enabled above
+      '/AWS',
+      '/Java'// add trailing slash if enabled above
     ],
-    links: [{ text: 'Vishnu Sunkari', link: 'http://www.vishnusunkari.com' }],
+    links: [{ text: 'Tweet Me', link: 'https://twitter.com/techgry1' }],
     frontline: false,
     ignoreIndex: true,
-    title:
-      "<a href='/'>Home </a><div class='greenCircle'></div><a href='/introduction'>About</a>",
+    title: "<a href='/'>Home </a><div class='greenCircle'></div><a href='/pages/about'>About </a><!--<a href='http://www.vishnusunkari.com'>About Me</a>-->",
   },
   siteMetadata: {
-    title: 'TechRead',
+    title: 'TechGry',
     description: 'Documentation built with mdx.  ',
     ogImage: null,
     docsLocation: 'https://github.com/vishnusunkari/techread/tree/master/content',
     favicon: '',
   },
   pwa: {
-    enabled: false, // disabling this will also remove the existing service worker.
+    enabled: true, // disabling this will also remove the existing service worker.
     manifest: {
-      name: 'TechRead',
-      short_name: 'TechRead',
+      name: 'TechGry',
+      short_name: 'TechGry',
       start_url: '/',
       background_color: '#6b37bf',
       theme_color: '#6b37bf',
@@ -64,7 +67,7 @@ const config = {
       crossOrigin: 'use-credentials',
       /*icons: [
         {
-          src: 'src/pwa-512.png',
+          src: 'pwa-512.png',
           sizes: `512x512`,
           type: `image/png`,
         },

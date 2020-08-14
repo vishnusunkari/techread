@@ -41,4 +41,54 @@ export default {
   // TODO add `ul`
   // TODO add `li`
   // TODO add `table`
+  
 };
+
+const element = (
+  <h3>
+    Hello!
+  </h3>
+);
+
+
+/*
+function BlogIndex({ data }) {
+  return data
+  const { edges: docs } = data.allMdx
+  return (
+    <Layout>
+      {docs.map(({ node }) => {
+        const { title, metaTitle, metaDescription } = node.frontmatter
+        return (
+          <div key={node.id}>
+            <p>
+              <div>{title}</div>
+              <div>Description {metaDescription}</div>
+            </p>
+            {/!*<p>{node.excerpt}</p>
+            <Link to={node.fields.slug}>View Article</Link>*!/}
+            <hr />
+          </div>
+        )
+      })}
+    </Layout>
+  )
+}
+
+const ComponentName = ({ data }) => <html>{JSON.stringify(data, null, 4)}</html>
+
+export const query = graphql`
+  {
+    allMdx {
+      edges {
+        node {
+          frontmatter {
+            title
+            metaTitle
+            metaDescription
+          }
+        }
+      }
+    }
+  }
+  `*/

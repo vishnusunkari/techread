@@ -21,8 +21,8 @@ AmazonEc2RoleforSSM) is attached to the Ec2 instance which enables SSM agent on 
 ec2 instance to talk to SSM end-point. Meaning this ec2 instance can fully communicate with SSM.
 
 ###  Managed Instances  
-**Inventory**:  SSM gathers inventory data from all SSM managed instances and show it on dashboard.
-**Documents**: define instructions of what Systems Manager needs to do inside systems. (yaml or json).
+**Inventory**:  SSM gathers inventory data from all SSM managed instances and show it on dashboard.  
+**Documents**: define instructions of what Systems Manager needs to do inside systems. (yaml or json).  
 **Automation**: set of actions as a workflow with a role to automate certain processes similar to Service Catalog or stack roles in cloudformation 
 ### Run Command
 Allows to execute a document on one or more managed instances.

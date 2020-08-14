@@ -20,7 +20,7 @@ export const StyledNextPrevious = styled('div')`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    min-width: 15em;
+    min-width: 10em;
     align-items: center;
     place-self: stretch;
     border-radius: 3px;

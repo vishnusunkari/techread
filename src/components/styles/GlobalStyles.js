@@ -24,7 +24,7 @@ export const baseStyles = injectGlobal`
   }
   html,
   body {
-    font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "Muli", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -220,7 +220,7 @@ export const baseStyles = injectGlobal`
     font-size: 14px;
   }
   .headerTitle {
-    font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "Saira Extra Condensed", "Segoe UI", Roboto, sans-serif, "Segoe UI Symbol";
     height: auto;
     font-size: 6vw;
     line-height: 1.5;
@@ -308,7 +308,12 @@ export const baseStyles = injectGlobal`
   }
   .navBarUL li a img,
   .navBarUL li a .shareIcon {
-    width: 20px;
+      width: 10px;
+      height: 10px;
+  }
+  .shareIcon {
+    transform: scale(0.5);
+    
   }
   .navBarUL li a:hover {
     opacity: 0.7;
@@ -415,13 +420,19 @@ export const baseStyles = injectGlobal`
   }
 
   .sideBarUL {
-    margin-top: 32px;
+    margin-top: 0px;
   }
 
   .sideBarUL li {
     list-style-type: none;
     width: auto;
   }
+
+  /*.sideBarUL li:first-child {
+    list-style-type: none;
+     width: auto;
+     background-color: #f8f8f8;
+  }*/
 
   .sideBarUL li a {
     /* color: #fff; */

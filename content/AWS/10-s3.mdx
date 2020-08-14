@@ -1,0 +1,45 @@
+---
+title: "S3"
+metaTitle: "AWS S3"
+metaDescription: "What is AWS S3? S3 stands for Simple Storage Service. It provides secure, durable, 
+highly-scalable object storage. It is object-based storage.  Files are stored in buckets (folders). 
+Bucket names must be globally unique. S3 Permissions, Versioning, Object Locking, Encryption, Performance"
+---
+### S3 (Storage Bucket)
+
+What is S3?   
+S3 stands for Simple Storage Service.  It provides secure, durable, highly-scalable object storage.  It means safe place to store your files. 
+It is object-based storage.  Files are stored in buckets (folders). Bucket names must be globally unique. 
+
+### Permissions
+- IAM permissions 
+- Bucket policy on bucket
+- ACL(Access Control Lists) on objects
+- Public Access Settings at Account Level and Bucket Level
+- Pre-Signed URLs 
+
+### Versioning 
+Versioning is required for Cross-region replication.  
+Versioning delete marker.
+
+### Object Locking 
+- Retention Periods : prevent updates or deletes for a given period of time.    
+- Legal Holds : prevent updates or deletes until the Legal Hold is removed.   
+- Versioning is required and through UI only during the bucket creation. Later by support ticket.   
+- Cross-region replication is not supported with Object Locking enabled.   
+- Cross-region replication is not supported when custom managed encryption is enabled on buckets.
+
+### S3 Encryption 
+Encryption can be applied both on buckets as default and at object level which overides the default.
+
+S3 encryption types :
+- None
+- SSE-S3 (AES-256)
+- SSE-KMS
+- SSE-C (Customer Key)
+
+### S3 Performance
+
+1. Multipart Upload
+2. Transfer Acceleration
+3. Partitions and Object Naming. eg: bucket names should not start with current date or same name.

@@ -9,7 +9,7 @@ const calculateTreeData = edges => {
           node: {
             fields: { slug },
           },
-        }) => slug !== '/'
+        }) => slug !== '/' && !slug.startsWith('/pages/')
       )
     : edges;
 
