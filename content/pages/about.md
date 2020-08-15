@@ -1,7 +1,8 @@
 ---
 title: "About TechGry"
 metaTitle: "About"
-metaDescription: "About TechGry"
+metaDescription: "About TechGry. TechGry tries to explain you things in one liners 
+giving you analogies saving you tons of time."
 ---
 
 ### About TechGry

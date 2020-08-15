@@ -37,7 +37,7 @@ const NextPrevious = ({ mdx, nav }) => {
     nextInfo.title = null;
     previousInfo.url = nav[currentIndex - 1] ? nav[currentIndex - 1].url : null;
     previousInfo.title = nav[currentIndex - 1] ? nav[currentIndex - 1].title : null;
-  } else if (currentIndex) {
+  } else if (currentIndex && nav[currentIndex + 1]) {
     // any other page
     nextInfo.url = nav[currentIndex + 1].url;
     nextInfo.title = nav[currentIndex + 1].title;

@@ -1,7 +1,7 @@
 ---
 title: "Placement Groups"
 metaTitle: "AWS Placement Groups"
-metaDescription: "What is AWS Placement Groups"
+metaDescription: "What is AWS Placement Groups? Placement Groups are logical groupings or clusters of instances in the selected AWS region."
 ---
 ### AWS Placement Groups
 

@@ -1,12 +1,11 @@
 ---
 title: "IAM"
 metaTitle: "AWS IAM"
-metaDescription: "What is AWS IAM"
+metaDescription: "What is AWS IAM? AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. "
 ---
 ### IAM Role (Permissions)
 
-To attach IAM role to an application instance where the instance has to talk to a database like 
-DynamoDB: 
+To attach IAM role to an application instance where the instance has to talk to a database like DynamoDB   
 - Launch an IAM Role that has the required permissions to read and write from DynamoDB table. 
 - Reference the IAM Role in the instance profile property of the application instance. 
 - Assumed role comes from Trust Relationships which are only associated with roles. 

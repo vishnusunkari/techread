@@ -1,7 +1,7 @@
 ---
 title: "AWS Config"
 metaTitle: "AWS Config"
-metaDescription: "What is AWS Config? A log of all configuration changes to aws resources."
+metaDescription: "What is AWS Config? A log of all configuration changes to AWS resources."
 ---
 ### AWS Config (Configuration Logs for Monitoring, Compliance)
 - A log of all configuration changes to AWS resources.  

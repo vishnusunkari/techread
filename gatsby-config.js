@@ -41,7 +41,7 @@ const plugins = [
     resolve: `gatsby-plugin-gtag`,
     options: {
       // your google analytics tracking id
-      trackingId: config.gatsby.gaTrackingId,
+      trackingId: 'UA-168648961-2',
       // Puts tracking script in the head instead of the body
       head: true,
       // enable ip anonymization
@@ -84,7 +84,7 @@ if (config.gatsby && !config.gatsby.trailingSlash) {
 }
 
 module.exports = {
-  pathPrefix: "/techread",
+  pathPrefix: "/",
   siteMetadata: {
     title: config.siteMetadata.title,
     description: config.siteMetadata.description,

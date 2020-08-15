@@ -52,7 +52,7 @@ const config = {
     title: 'TechGry',
     description: 'Documentation built with mdx.  ',
     ogImage: null,
-    docsLocation: 'https://github.com/vishnusunkari/techread/tree/master/content',
+    docsLocation: '',
     favicon: '',
   },
   pwa: {
