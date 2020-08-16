@@ -10,12 +10,12 @@ Route53 is AWS DNS product. It provides both public and private DNS services. It
 host domains.  
  
 **Hosted Zones** :   
-Created by Route53 Registrar (eg: bestcatpicsintheworld.com)  
+Created by Route53 Registrar (eg: techgry.com)  
 Provides 4 nameserver values  
 
 **Register domains** :   
 To integrage the hosted zone with registered domains.  
-Edit the registered domain name (bestcatpicsintheworld.com)    
+Edit the registered domain name (techgry.com)    
 and  update the registered name servers with the hosted zone nameservers.  
 
 The above process is done automatically if you register a domain inside Route53.
@@ -27,7 +27,7 @@ Its the Record Set which defines how DNS interacts with the outside world.
 **A** : Domain to IPV4 IP address 
     (you can specify A record with Alias enabled meaning instead of an IP address 
       you can point to logical aws resource (name of s3 bucket))
-      You cannot use CNAME for an APEX of the domain (bestcatpicsintheworld.com) ie why 
+      You cannot use CNAME for an APEX of the domain (techgry.com) ie why 
       you can use A type with Alias pointing to a logical AWS resource.  
 **AAAA** : Domain to IPV6 IP address    
 **CNAME** : Hostname(should NOT be apex domain) to another hostname    
