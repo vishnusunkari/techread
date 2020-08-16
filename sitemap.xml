@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://hasura.io/AWS</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/01-awsorganizations</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/00-iam</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/02-awsconfig</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/pages/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/04-awssystemsmanager</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/03-awsservicecatalog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/06-autoscaling</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/05-elasticloadlalancing</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/07-placementgroups</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/09-route53</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/10-s3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/08-cloudfront</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/11-efs</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hasura.io/AWS/12-rdsaurora</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/pages/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/04-awssystemsmanager</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/01-awsorganizations</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/02-awsconfig</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/05-elasticloadlalancing</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/03-awsservicecatalog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/06-autoscaling</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/07-placementgroups</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/08-cloudfront</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/00-iam</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/12-rdsaurora</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/09-route53</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/11-efs</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/AWS/10-s3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
