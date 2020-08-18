@@ -1,7 +1,7 @@
 const config = {
   gatsby: {
     pathPrefix: '/',
-    siteUrl: 'https://techgry.com',
+    siteUrl: 'https://techgry.com/sitemap',
     gaTrackingId: null,
     trailingSlash: false,
   },
