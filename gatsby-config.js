@@ -49,6 +49,12 @@ const plugins = [
     },
   },
   'gatsby-plugin-catch-links',
+  {
+    resolve: 'gatsby-plugin-robots-txt',
+    options: {
+      policy: [{ userAgent: '*', allow: '/' }]
+    }
+  },
 ];
 // check and add algolia
 if (config.header.search && config.header.search.enabled && config.header.search.algoliaAppId && config.header.search.algoliaAdminKey) {
