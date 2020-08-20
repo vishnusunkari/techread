@@ -115,18 +115,24 @@ const calculateTreeData = edges => {
   }, tree);
 };
 
-const Tree = ({ edges }) => {
+const Tree = ({ edges}) => {
   let [treeData] = useState(() => {
     return calculateTreeData(edges);
   });
 
   let defaultCollapsed = {};
+  
+  let location;
 
-
+  if (typeof document != 'undefined') {
+    location = document.location;
+  }
+  
   treeData.items.forEach(item => {
     defaultCollapsed[item.url] = config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url);
-    const active = (location.pathname.includes(item.url));
-
+    
+    const active = location && location.pathname.includes(item.url);
+    
     if(active){
       defaultCollapsed[item.url] = false;
     }
