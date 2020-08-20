@@ -1,0 +1,52 @@
+---
+title: "OpsWorks"
+metaTitle: "AWS OpsWorks"
+metaDescription: "What is AWS OpsWorks? AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. "
+---
+### OpsWorks (Stack, Chef recipes)  
+Configuration Management Service that helps build and operate highly dynamic apps and propagate changes instantly
+1. OpsWorks Stacks (Reqd for Exam)
+2. OpsWorks for Chef Automate
+3. OpsWorks for Puppet Enterprise
+
+ 
+### Stack
+At the base level is Stack - Infrastructure platform like dev/prod/qa   
+### Layer
+At the second level is Layer - Tier (Application Tier, DB Tier etc)
+
+- OpsWorks revolve around the concept of Chef Cookbooks, recipe  
+- Option to choose custom Chef cookbooks located in a repo (github)  
+- Auto Healing capabilities of OpsWorks stacks.  
+- Supports ECS in OpsWorks Layer  
+- Instances : 24/7, Time-based, Load-based
+
+Two primary parts:   
+1. Provisioning Engine
+2. OpsWorks Agent   
+
+### Provisioning Engine
+- Launches EC2
+- EBS volumes
+- Configures ELBs
+- Autoscaling
+- Autohealing 
+### Opsworks Agent   
+Software that runs on instances for on-host configuration.  
+
+
+### Opsworks Lifecycle Events  
+- Setup : once after boot  
+- Configure : whenever any stack instance changes state, update to stack
+- Deploy : upon app deployment 
+- Undeploy : upon app deletion
+- Shutdown : when the instance is stopped
+
+### Steps  
+- First a stack is created.
+- Then one or more layers are defined. 
+- Then the application code to be run and launched into a layer is configured.
+- Then a Chef cookbook is created and recipes written which are associated with specific OpsWorks events lifecycles. 
+- Then the instances are launched into the defined layers. 
+- Finally the applications are deployed onto the servers defined at each application hosting layer.  
+

@@ -1,0 +1,62 @@
+---
+title: "Elastic Beanstalk"
+metaTitle: "AWS Elastic Beanstalk"
+metaDescription: "What is AWS Elastic Beanstalk? Application, Environment, Application Version, Rolling deployments, All at once deployments, 
+Configuration presets, Creation of RDS Database instances "
+---
+### Elastic Beanstalk (Platform as a Service)
+
+### Application 
+At the Base level is Application.  Container of environments, versions, environment configs.   
+### Environment
+An environment of a given tier(web server / worker batch jobs).
+### Application Version
+Distinct Version of application, eg: ApplicationName-V1.jar).    
+- In the background it uses CloudFormation.  
+- Supports Blue-Green Deployments natively.  
+- Recommended to deploy databases outside of Beanstalk as the data can be deleted when the environment is removed.  
+- eb-extensions folder inside Application Versions to allow config info to connect to SQS or other etc.  
+
+AWS Elastic Beanstalk provides several options for how deployments are processed, including deployment 
+ policies (All at once, Rolling, Rolling with additional batch, and Immutable) and options that let you 
+ configure batch size and health check behavior during deployments.    
+By default, your environment uses :
+ 1. Rolling deployments if you created it with the console or EB CLI, or 
+ 2. All-at-once deployments if you created it with a different client (API, SDK, or AWS CLI).   
+
+Beanstalk takes care :
+- Provisioning
+- Capacity Provisioning
+- Autoscaling
+- Load-balancing
+- Application Health Monitoring.     
+
+To alter application settings and software configurations that run on the EC2 instances 
+created by Elastic Beanstalk, configuration files can be added to a specifically named 
+folder in the application code versions, which are applied during the deployment process.   
+ 
+To use configuration files, a folder named .ebextensions is created at the top level of 
+the project's source code. Then files with the extension .config are added to specify options.   
+
+Configuration Presets:
+1. Low cost, 
+2. HA, 
+3. Custom configuration
+
+### Elastic Beanstalk Creation of RDS DB Instances    
+Elastic Beanstalk takes care of creating the RDS databased instances automatically, 
+but since the database hostname is not known until this environment is created, this 
+may leave you asking, "How will the application know "what to use to connect to the database?"    
+Elastic Beanstalk takes care of this by providing access to such information through 
+environment properties. For RDS, it exposes all of the necessary connection parameter 
+information to the application as environment properties. These properties are passed 
+in the application when the Elastic Beanstalk creates the environment. 
+So, the database hostname, DB name, the port, the username, and password can all be 
+accessed through environment variables.   
+
+### Rolling Deployments   
+With rolling deployments, Elastic Beanstalk splits the environment's EC2 instances into batches and deploys
+ the new version of the application to one batch at a time, leaving the rest of the instances in the 
+ environment running the old version of the application. During a rolling deployment, some instances serve 
+ requests with the old version of the application, while instances in completed batches serve other requests 
+ with the new version.

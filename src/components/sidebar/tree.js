@@ -120,12 +120,14 @@ const Tree = ({ edges }) => {
     return calculateTreeData(edges);
   });
 
-  const defaultCollapsed = {};
+  let defaultCollapsed = {};
+
 
   treeData.items.forEach(item => {
-    if (config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url)) {
-      defaultCollapsed[item.url] = true;
-    } else {
+    defaultCollapsed[item.url] = config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url);
+    const active = (location.pathname.includes(item.url));
+
+    if(active){
       defaultCollapsed[item.url] = false;
     }
   });

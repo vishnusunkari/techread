@@ -1,0 +1,55 @@
+---
+title: "CloudFormation"
+metaTitle: "AWS CloudFormation"
+metaDescription: "What is AWS CloudFormation? Template Portability and Reuse, Cross stack references, 
+Nested Stacks, Stack Roles, Stack Sets, Custom Resources,  CloudFormer"
+---
+### CloudFormation (Infrastructure as a Service) 
+
+JSON or YAML  
+Base entity : Stacks tied with resources for creation, update, deletion  
+Required: Resource definition  
+
+### Template Portability and Reuse 
+- Parameters with default values or no parameters at all
+- Pull the values from System Manager Parameter Store
+- Pseudo Parameters (eg:  AWS::Region, Partition, StackId, StackName, URLSuffix etc) 
+- Intrinsic Functions (eg: Fn::GetAZs, Fn::ImportValue, Ref etc)
+
+### Cross stack references    
+- Base Infrastructure values like VPCId, subnets, can be referenced in other stacks  
+- Using Ref, Export, Fn::ImportValue  
+- Reuse Stacks  
+
+### Nested Stacks  
+- Reuse blocks of CloudFormation templates.  
+- Reuse same template code but create multiple different stacks with the same template.  
+- Share outputs with parameters between these stacks using nested stacks.  
+eg: GetAtt 'VPCStack.Outputs.VPCID'
+
+### Stack Roles 
+- Allows anyone to use CloudFormation provision,update delete based on the roles permissions.
+- Allows separate security rules.
+- Its IAM Role -> AWS Service -> CloudFormation Role 
+
+### Stack Sets  
+- Administrator Account and a Target Account
+- Allow you to deploy a cloudformation template into multiple regions or 
+- Multiple regions in multiple accounts at the same time.
+- You need to establish a trust between these accounts by creating 2 roles:
+- AWSCloudFormationStackSetAdminRole in Admin Account and 
+- AWSCloudFormationStackSetExecutionRole in Target Account.
+eg: Enable cloudtrail across multiple accounts, enable mfa accross multiple accounts etc.
+
+### Custom Resources 
+- Custom Resource in CloudFormation Template.
+- Used in scenarios when you want to build Hybrid Infrastructure (Both AWS and Outside AWS)
+(eg: Retrieve a license key to activate)
+- CloudFormation Sends a notification event to a lambda or SNS topic
+- Define   
+  - Custom::AMIInfo
+  - ServiceToken : { } is the endpoint of lambda or SNS topic
+- Receives Response on a pre-signed S3 URL   
+
+CloudFormer tool is used to create CloudFormation template files from existing stack.  
+CloudFormation can be used as one of the Disaster Recovery Strategies.
