@@ -27,61 +27,40 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-b1108a67eb13e0dfd45a.js"
+    "url": "webpack-runtime-04a8ff048b9bc3ecbabc.js"
   },
   {
-    "url": "framework-17193c917176a9ab3be2.js"
+    "url": "commons-926e13980b7ff3c9526c.js"
   },
   {
-    "url": "commons-ce6c86162ad16e0dfb34.js"
+    "url": "app-398884b4704850f210c5.js"
   },
   {
-    "url": "app-5fc2d8b55c59347fe764.js"
+    "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-328a2b7c20aa4ad52a6f.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "e74408d967be53b1e0f7f45af2bb14c9"
-  },
-  {
-    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-0097d26fbd474b34ff9b.js"
+    "revision": "8a19569c56cfb22c7a3936409a8c099b"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "53a81d6b142e1600abf83bb4dc9c6c16"
-  },
-  {
-    "url": "page-data/sq/d/2619113677.json",
-    "revision": "be34bb7debbb3540f2dc1cd5f67d5d2a"
-  },
-  {
-    "url": "page-data/sq/d/3706406642.json",
-    "revision": "f2d46d48922246c793a8143f00b41503"
-  },
-  {
-    "url": "page-data/sq/d/417421954.json",
-    "revision": "84bfc4ccb46d00d2410824a4793b6397"
-  },
-  {
-    "url": "page-data/app-data.json",
-    "revision": "92680b795e81a4a0a00a57e9a5676234"
-  },
-  {
-    "url": "polyfill-2c41af93380b206a1a39.js"
+    "revision": "5636d5ab217f85530a92b2939e270518"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "2397dab91f72c03805699ea22fefa6c1"
+    "revision": "8cb28b7e9d2ef8e355437cf472ffdf91"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET');
-workbox.routing.registerRoute(/^https?:.*\/page-data\/.*\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/^https?:.*\page-data\/.*\/page-data\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 
 /* global importScripts, workbox, idbKeyval */
-importScripts(`idb-keyval-3.2.0-iife.min.js`)
+
+importScripts(`idb-keyval-iife.min.js`)
 
 const { NavigationRoute } = workbox.routing
 
@@ -157,12 +136,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/techread`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-5fc2d8b55c59347fe764.js`))) {
+  if (!resources || !(await caches.match(`/techread/app-398884b4704850f210c5.js`))) {
     return await fetch(event.request)
   }
 
@@ -175,7 +154,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/techread/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
