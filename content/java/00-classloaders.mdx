@@ -1,0 +1,31 @@
+---
+title: "Java ClassLoaders"
+metaTitle: "Java ClassLoaders"
+metaDescription: "What is Java ClassLoader?  "
+---
+### Java ClassLoaders (loads classs files in Java)
+
+Java code is compiled into a class file by compiler and JVM executes the compiled code.  
+ClassLoader is a class in Java ie used to load these class files.
+
+Java class loaders can be broadly classified into below categories.
+
+### Bootstrap Class Loader     
+Bootstrap class loader loads java core classes like java.lang, java.util etc.    
+These are classes that are part of java runtime environment.    
+Bootstrap class loader is native implementation and so they may differ across different JVMs.   
+
+### Extensions Class Loader      
+JAVA_HOME/jre/lib/ext contains jar packages that are extensions of standard core java classes.    
+Extensions class loader loads classes from this ext folder.    
+Using the system environment property java.ext.dirs you can add ext folders and jar files to be loaded using extensions class loader.   
+
+### System Class Loader   
+Java classes that are available in the java classpath are loaded using System class loader.      
+You can see more class loaders like java.net.URLClassLoader, java.security.SecureClassLoader etc.      
+Those are all extended from java.lang.ClassLoader.   
+
+These class loaders have a hierarchical relationship among them. Class loader can load classes from one level above its hierarchy.    
+- First level is bootstrap class loader.      
+- Second level is extensions class loader.      
+- Third level is system class loader.     

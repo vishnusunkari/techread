@@ -35,15 +35,20 @@ const config = {
     forcedNavOrder: [
       '/index',
       '/pages/about',// add trailing slash if enabled above
-      '/AWS',
-      '/Java',
-      '/DataStructures'
+      '/aws',
+      '/java',
+      '/datastructures'
     ],
     collapsedNav: [
-      '/AWS',
-      '/Java'// add trailing slash if enabled above
+      '/aws',
+      '/java'// add trailing slash if enabled above
     ],
-    links: [{ text: 'Tweet Me', link: 'https://twitter.com/techgry1' }],
+    links: [
+              { text: 'Tweet Me', link: 'https://twitter.com/techgry1' }, 
+              { text: 'Privacy Policy', link: '/pages/privacypolicy' },
+              { text: 'Terms and Conditions', link: '/pages/terms-and-conditions' },
+              { text: 'Disclaimer', link: '/pages/disclaimer' },
+           ],
     frontline: false,
     ignoreIndex: true,
     title: "<a href='/'>Home </a><div class='greenCircle'></div><a href='/pages/about'>About </a><!--<a href='http://www.vishnusunkari.com'>About Me</a>-->",
