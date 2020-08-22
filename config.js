@@ -1,7 +1,7 @@
 const config = {
   gatsby: {
     pathPrefix: '/',
-    siteUrl: 'https://techgry.com/sitemap',
+    siteUrl: 'https://techgry.com',
     gaTrackingId: 'UA-168648961-2',
     trailingSlash: false,
   },
@@ -35,8 +35,8 @@ const config = {
     forcedNavOrder: [
       '/index',
       '/pages/about',// add trailing slash if enabled above
-      '/aws',
       '/java',
+      '/aws',
       '/datastructures'
     ],
     collapsedNav: [
