@@ -2,7 +2,7 @@ const config = {
   gatsby: {
     pathPrefix: '/',
     siteUrl: 'https://techgry.com/sitemap',
-    gaTrackingId: null,
+    gaTrackingId: 'UA-168648961-2',
     trailingSlash: false,
   },
   header: {
@@ -40,8 +40,7 @@ const config = {
       '/datastructures'
     ],
     collapsedNav: [
-      '/aws',
-      '/java'// add trailing slash if enabled above
+
     ],
     links: [
               { text: 'Tweet Me', link: 'https://twitter.com/techgry1' }, 

@@ -26,5 +26,8 @@ and fill in the missing dots. TechGry is for all those :
 - Want to advance their Technical and Design skills.
 - Want to become Software Architects.
 - Simply become better at Technology.
- 
+
+Again the main idea of TechGry is to give you the aha moments while learning as most of these topics are not
+found in a single place elsewhere and these are geared to excel at something which you already have knowledge about.
+
 Feel free to email your suggestions : [techgryservice@gmail.com](mailto:techgryservice@gmail.com)
