@@ -1,6 +1,6 @@
 ---
 title: "AWS Organizations"
-metaTitle: "Summary of AWS Organizations"
+metaTitle: "AWS Organizations"
 metaDescription: "What is AWS Organizations. AWS Organizations is an account management service on AWS 
 that allows you to consolidate multiple AWS accounts into a single organization."
 ---

@@ -1,6 +1,6 @@
 ---
 title: "CloudFront"
-metaTitle: "AWS CloudFront"
+metaTitle: "CloudFront"
 metaDescription: "What is AWS CloudFront? CloudFront is a Content Delivery Network (CDN). Origin Access Identity, Edge Location, HTTPS on CloudFront, Lambda@Edge"
 ---
 ### CloudFront

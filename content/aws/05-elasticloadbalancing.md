@@ -1,6 +1,6 @@
 ---
 title: "Elastic Load Balancing"
-metaTitle: "AWS Elastic Load Balancing"
+metaTitle: "Elastic Load Balancing"
 metaDescription: "What is Elastic Load Balancing? Elastic Load Balancing means automatically distributing 
 incoming application traffic across multiple server instances."
 ---

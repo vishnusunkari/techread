@@ -1,6 +1,6 @@
 ---
 title: "Route53"
-metaTitle: "AWS Route53"
+metaTitle: "Route53"
 metaDescription: "What is Route53? Route53 is AWS DNS product. 
 It provides both public and private DNS services. It does both register domains as well as 
 host domains.  Hosted Zone, Record Set, Inbound Outbound endpoints"

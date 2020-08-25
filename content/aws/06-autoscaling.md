@@ -1,6 +1,6 @@
 ---
 title: "Autoscaling"
-metaTitle: "AWS Autoscaling"
+metaTitle: "Autoscaling"
 metaDescription: "What is AWS Autoscaling.  Auto Scaling Group. Common problems with Autoscaling and solutions"
 ---
 
