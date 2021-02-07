@@ -1,0 +1,84 @@
+---
+title: "Rotate Monthly"
+metaTitle: "How to pick a different item daily, weekly or monthly"
+metaDescription: "How to pick a different item from a collection to display on your website daily, weekly or monthly based on a rotation strategy"
+---
+### How to Pick an item from a collection based on a Rotation Strategy Weekly or Monthly 
+
+Lets say you have a requirement to display a unique url link every month or week from a collection of url links.
+For eg: If you have a collection of 4 url links and you want to pick 1 every month.    
+
+January  -> www.urllink1.com    
+February -> www.urllink2.com    
+March -> www.urllink3.com    
+April -> www.urllink1.com    
+May -> www.urllink2.com    
+..    
+November -> www.urllin2.com    
+December -> www.urllink3.com    
+    
+or     
+
+week1 of the year -> www.urllink1.com    
+week2 of the year -> www.urllink2.com    
+..    
+week5 of the year -> www.urllink1.com    
+
+Following is one better way in java that you can implement using enums.  Create an enum class as below
+
+```
+package com.concepts.techgry;
+
+import java.util.Calendar;
+import java.util.List;
+
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+/*
+ * @author http://www.techgry.com
+ * @created 02/02/2021
+ * Purpose : To pick a unique item from a given list per month
+ *  or per week based on rotation strategy.
+ *  NOTE: Calendar.MONTH is zero indexed
+ *        Calendar.WEEK_OF_YEAR is 1 indexed
+ */
+public enum RotationStrategyEnum {
+
+    WEEKLY(Calendar.getInstance().get((Calendar.WEEK_OF_YEAR) - 1)),
+    MONTHLY(Calendar.getInstance().get((Calendar.MONTH)));
+    int strategyIdx;
+
+    RotationStrategyEnum(int strategyIdx) {
+        this.strategyIdx = strategyIdx;
+    }
+
+    /*
+     * Based on the int value of month/week, month % listSize
+     *  will always give you an index within the list which is unique per month/week
+     *  eg : listSize=4, January  = 0, 0%4 =0, idx=0;
+     *       listSize=4, February = 1, 1%4 =1, idx=1;
+     * Same logic applies to int value of week in an year when strategy is WEEKLY
+     */
+    public <T> T getItem(List<T> list) {
+        if(isEmpty(list)) return null;
+        int idx = this.strategyIdx % list.size();
+        return list.get(idx);
+    }
+}
+
+```
+
+Now from client code you can pass the collection to the enum as follows and get 
+a unique item from an collection of objects.  Since the RotationStrategyEnum above 
+is using generics, you are not restricted for only strings but you can pretty much   
+pass any type of collection to the enum to  get a unique item from that collection 
+based on RotationStrategy Weekly or Monthly.
+
+```
+List<String> collection = new ArrayList(Arrays.asList( "www.link1.com" , "www.link2.com" , "www.link3.com" ) 
+String monthlyUniqueUrlLink = RotationStrategyEnum.MONTHLY.getItem(collection);
+String weeklyUniqueUrlLink = RotationStrategyEnum.WEEKLY.getItem(collection);
+
+```
+
+Now you can pass the above links monthlyUniqueUrlLink or weeklyUniqueUrlLink to your front-end
+so you can display a unique rotated link based on the Rotation Strategy.
