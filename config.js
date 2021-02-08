@@ -35,12 +35,14 @@ const config = {
     forcedNavOrder: [
       '/index',
       '/pages/about',// add trailing slash if enabled above
-      '/java',
       '/aws',
+      '/java',
+      '/kafka',
+      '/concepts',
       '/datastructures'
     ],
     collapsedNav: [
-
+      '/aws',
     ],
     links: [
               { text: 'Tweet Me', link: 'https://twitter.com/techgry1' }, 
