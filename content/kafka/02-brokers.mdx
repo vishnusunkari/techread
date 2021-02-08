@@ -1,0 +1,22 @@
+---
+title: "Brokers"
+metaTitle: "Kafka Brokers"
+metaDescription: "Kafka Brokers"
+---
+
+### Brokers
+- A Kafka cluster is composed of multiple brokers (servers)
+- Each broker is identified with its ID (integer)
+- Each broker contains certain topic partitions
+- After connecting to any broker (called a bootstrap broker), you will be connected to the entire cluster
+- A good number to get started is 3 brokers, but some big clusters have over 100 brokers.
+- You can choose to number brokers starting at 100 (arbitrary)
+
+```
+---------------         ---------------      --------------
+|             |         |             |      |            |
+| Broker 101  |         | Broker 102  |      | Broker 103 |
+|             |         |             |      |            |
+---------------         ---------------      --------------
+```
+
