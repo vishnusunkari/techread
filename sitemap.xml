@@ -3,7 +3,6 @@
 <url> <loc>https://techgry.com/concepts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/java</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/privacypolicy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kafka/00-what-is-kafka</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -37,4 +36,5 @@
 <url> <loc>https://techgry.com/aws/13-aws-cloudformation</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/15-aws-elasticbeanstalk</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/concepts/00-rotation-strategy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
