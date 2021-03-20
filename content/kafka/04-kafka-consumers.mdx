@@ -1,0 +1,33 @@
+---
+title: "Kafka Consumers"
+metaTitle: "Kafka Consumers, Groups, Offsets, What if too many consumers?"
+metaDescription: "Kafka Consumers. Consumers read data from a topic. Consumers know which broker to read from.
+Each consumer within a group reads from exclusive partitions. What if too many Consumers? "
+---
+
+### Consumers    
+
+- Consumers read data from a topic (identified by name)       
+- Consumers know which broker to read from         
+- In case of broker failures, consumes know how to recover      
+- Data is read in order within each partitions.    
+
+![kafka consumers](kafka_consumers.svg "Kafka Consumers")    
+
+### Consumer Groups        
+
+- Consumers read data in consumer groups    
+- Each consumer within a group reads from exclusive partitions    
+- If you have more consumers than partitions, some consumers will be inactive    
+
+![kafka consumers_group](kafka_consumers_group.svg "Kafka Consumers Group")
+
+Note: Consumers will automatically use a GroupCoordinator and a ConsumerCoordinator 
+to assign a consumer to a partition.    
+
+### What if too many Consumers?    
+
+- If you have more consumers than partitions, some consumers will be inactive    
+
+![too_many consumers](too_many_consumers.svg "What if too many Consumers")
+

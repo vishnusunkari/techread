@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://techgry.com/sitemap.xml
+Host: https://techgry.com
