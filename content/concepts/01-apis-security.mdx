@@ -1,0 +1,141 @@
+---
+title: "API Security"
+metaTitle: "How to secure APIs ?"
+metaDescription: "How to secure APIs? Very simple way of securing REST APIs.  Global security for REST APIs in Spring Boot"
+---
+### How to secure your SpringBoot REST APIs simple way?
+
+Best way to secure your APIs is by adding OAuth2 Authentication/Authorization but that needs an OAuth server established
+in the first place.  Meanwhile, you can secure your APIs the following simple way.   
+
+You can have a unique secure API key or token for all your services which can be stored in the properties file of 
+springboot application where your REST end-points reside. Have the below java file which is a servlet filter within 
+a separate package like com.concepts.techgry.filter . Since this is a servlet filter every request to this application 
+is intercepted by this filter based on the url pattern thus all the requests to your end-points go through the security
+logic defined in this filter.     
+
+There is also an excluded list of url patterns within the servlet filter for which you do not want to apply the 
+security for:
+
+```
+package com.concepts.techgry.filter;
+
+import com.google.common.base.CharMatcher;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.Set;
+
+@Slf4j
+@Component
+@WebFilter(urlPatterns = "/applicationName/*")
+class AuthenticationFilter implements Filter {
+
+    final static String BEARER_KEYWORD = "bearer";
+
+    final static Set<String> excludeURLPathList = new HashSet<>(Arrays.asList("/manage/health"));
+
+    @Value("${AUTHORIZATION_KEY}")
+    private String authorizationKey;
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+        log.info("Inside AuthenticationFilter ...");
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String authHeader = httpRequest.getHeader("authorization");
+        /**
+         * Incase of request going through proxy (eg: load balancer)
+         * look for originating client IP in X-Forwarded-For header
+         * Else retrieve the client IP  via getRemoteAddr()
+         * */
+        String remoteAddress = httpRequest.getHeader("X-Forwarded-For");
+        String remoteClientAddress = StringUtils.isNotBlank(remoteAddress) ? remoteAddress : httpRequest.getRemoteAddr();
+        String remoteUserAgent = httpRequest.getHeader("User-Agent");
+        String urlPath = httpRequest.getRequestURI().substring( httpRequest.getContextPath().length());
+        log.info("RemoteClientAddress : {}, User-Agent: {}, Authorization Header: {}", remoteClientAddress, remoteUserAgent, authHeader);
+
+        if (excludeURLPathList.contains(urlPath)) {
+            log.info("health check");
+            chain.doFilter(request, response);
+        } else if (authorize(authHeader)) {
+            log.info("Authorization SUCCESS. RemoteClientAddress : {}, User-Agent: {}, Authorization Header : {}", remoteClientAddress, remoteUserAgent, authHeader);
+            chain.doFilter(request, response);
+        }  else {
+            authenticationFailureResponse(remoteClientAddress, remoteUserAgent, authHeader, response);
+        }
+    }
+
+    @Override
+   public void destroy () {
+
+    }
+
+    static void authenticationFailureResponse(String remoteClientAddress, String remoteUserAgent, String authHeader, ServletResponse response) throws IOException {
+        log.info("Authorization FAILURE. RemoteClientAddress : {}, User-Agent: {}, Authorization Header : {}", remoteClientAddress, remoteUserAgent, authHeader);
+        ((HttpServletResponse) response).setStatus(HttpStatus.UNAUTHORIZED.value());
+        ((HttpServletResponse) response).getOutputStream().write("Invalid Authorization Token".getBytes());
+    }
+
+    boolean authorize(String authHeader) {
+        if(StringUtils.isNotBlank(authHeader)) {
+            try {
+                String encodedToken = extractBearerToken(authHeader);
+                String token = decodeToken(encodedToken);
+                return token.equals(authorizationKey);
+            } catch (Exception e) {
+                log.error("Exception while authorizing the token", e);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    static String extractBearerToken(String authHeader) {
+        if (authHeader.toLowerCase().startsWith(BEARER_KEYWORD)){
+            return authHeader.substring(BEARER_KEYWORD.length()).trim();
+        }
+        return "";
+    }
+
+    static String decodeToken(String encodedToken) {
+        byte[] decoded = Base64.getDecoder().decode(CharMatcher.whitespace().removeFrom(encodedToken));
+       return new String(decoded);
+    }
+
+}
+
+```
+
+Now from the client code which ever service is consuming the end-point will need to embed the Bearer token 
+within Authorization headers of the request
+
+```
+  String authKey = messageSource.getMessage("properties.auth.key", null, Locale.US);
+  String base64EncodedAuthKey = Base64.encode(authKey.getBytes(StandardCharsets.UTF_8));
+
+  RestTemplate restTemplate = new RestTemplate();
+  restTemplate.getInterceptors().add((request, body, execution) -> {
+    request.getHeaders().add(HttpHeaders.AUTHORIZATION, "Bearer " + base64EncodedAuthKey); 
+    return execution.execute(request, body); 
+  });
+  ResponseObject responseObject = restTemplate.postForObject(requestBaseUrl + "/processRequest", request, ResponseObject.class);
+
+```
+

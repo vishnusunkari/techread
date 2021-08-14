@@ -52,7 +52,9 @@ const config = {
            ],
     frontline: false,
     ignoreIndex: true,
-    title: "<a href='/'>Home </a><div class='greenCircle'></div><a href='/pages/about'>About </a><!--<a href='http://www.vishnusunkari.com'>About Me</a>-->",
+    title: "<a href='/'>Home </a><div class='greenCircle'></div>" +
+      "<a href='/pages/about'>About </a><div class='greenCircle'></div>" +
+      "<a href='/pages/about-me'>Me</a>",
   },
   siteMetadata: {
     title: 'TechGry',
