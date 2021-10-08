@@ -3,7 +3,6 @@
 <url> <loc>https://techgry.com/java</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/concepts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kafka</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kafka/00-what-is-kafka</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kafka/01-kafka-topics-partitions-offsets</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -39,4 +38,6 @@
 <url> <loc>https://techgry.com/aws/14-aws-opsworks</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/12-aws-rdsaurora</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/15-aws-elasticbeanstalk</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/concepts/02-maxLifetime</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
