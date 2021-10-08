@@ -1,0 +1,73 @@
+---
+title: "Fix HikariPool"   
+metaTitle: "How to fix Failed to validate connection. Consider using a shorter maxLifetime value"   
+metaDescription: "How to fix HikariPool Failed to validate connection Warning Errors within a SpringBoot Application, Failed to validate connection
+com.mysql.cj.jdbc.ConnectionImpl, No operations allowed after connection closed,  Possibly consider using a shorter maxLifetime value"   
+---
+### How to fix "HikariPool Failed to validate connection. Consider using a shorter maxLifetime value"   
+If you see the following errors in your SpringBoot Application:      
+
+```
+com.zaxxer.hikari.pool.PoolBase: HikariPool-5 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7ae6d507 
+(No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+```
+Here are 2 ways you can fix :   
+1. Increase the wait_timeout value on database server.   
+2. Decrease the spring datasource's maxLifetime property to less than the database server's wait_timeout value.      
+
+1. Check the wait_timeout value on mysql db server by running the following sql:
+```
+mysql> show global variables like "wait_timeout";
+----------------------------
+| Variable_name  |  Value  |
+----------------------------
+|wait_timeout    |  28800  |
+----------------------------
+```
+The above value 28800 is in seconds.  Compare it to the applications connection pool settings maxLifetime value which is in milliseconds.  
+In springboot the default value is 180000 milliseconds.
+
+You need to make sure the application properties default value is less than the database server's "wait_timeout" value.
+
+You can use the following mysql commands to update it.
+```
+open mysql sudo service mysql start
+open command window
+
+sudo mysql -u username -p 
+change the timeout
+
+SET @@GLOBAL.interactive_timeout=31536000
+restart server
+
+sudo service mysql restart
+```
+   
+2. If you don't want to mess with database server's values, here is the second option.
+In some cases the database server's value is shortened to make sure the database connections are closed much earlier   
+
+For eg: if the database server's wait_timeout value is 600 seconds which is equivalent to 600000 milliseconds as below    
+```
+mysql> show global variables like "wait_timeout";
+----------------------------
+| Variable_name  |  Value  |
+----------------------------
+|wait_timeout    |   600   |
+----------------------------
+```
+
+Need to find the spring.datasource property from your application.properties    
+
+For eg: if your datasource jdbc url is in the following format:   
+```
+spring.billing-datasource.jdbcUrl=jdbc:mysql://prod-mariadb/billing
+```
+
+Then you need to have an additional property in the application.propertes for the above datasource as follows:
+```
+spring.billing-datasource.maxLifetime=54000
+```
+Here 54000 is in milliseconds which is 30 secs less than the database server's "wait_timeout" which was 600000.       
+
+If you have multiple datasources defined in your application, you need to make sure the maxLifetime value is set 
+to all the datasources as defined above.   
