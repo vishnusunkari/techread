@@ -38,6 +38,7 @@
 <url> <loc>https://techgry.com/aws/14-aws-opsworks</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/12-aws-rdsaurora</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/15-aws-elasticbeanstalk</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/concepts/02-maxLifetime</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/concepts/03-access-spring-beans</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
