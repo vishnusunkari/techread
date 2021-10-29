@@ -1,0 +1,257 @@
+---
+title: "Spring Beans"
+metaTitle: "How to access Spring Beans from Non-Spring managed classes and pojos ?"
+metaDescription: "How to access Spring Beans from Non-Spring managed classes and pojos ? How to make an API call only when 
+required ? How to avoid making too many API calls ? How to make an API call only when required for every kafka message ? 
+How to make sure your application is performant when using 3rd party REST API calls ?"   
+---
+### How to access Spring Beans from Non-Spring managed classes and pojos ?    
+
+You can easily access spring beans from other spring managed beans by simply Autowiring. But in some cases
+you may want to access Spring Beans from a non-Spring managed class or pojo.     
+
+A typical example is when consuming kafka messages lets say we may need the response of a 3rd party REST end-point
+at multiple places or we may NOT need it at all based on certain if conditions.  So what we were doing initally was calling
+that end-point once for every message and using the response data at various required places within the processing of that 
+message.  What I found out is that REST end-point's data is only required 500 out of 20000 messages based on certain
+criteria of if conditions.  We were unnecessarily calling that end-point for 1500 of the messages.    
+
+For this use case I wanted to call the REST end-point only if required and only once when required per each kafka message 
+and we may be using that response at multiple places within that message processing.  To achieve this use case first you
+need the following SpringContext class which can be used to get the spring beans within the current spring context.   
+
+```
+package com.concepts.techgry;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author https://techgry.com
+ * @created 10/29/2021
+ *  NOTE:  This class is used to get a spring bean from IOC container
+ *      to be used for regular java pojo classes.
+ */
+
+@Component
+public class SpringContext implements ApplicationContextAware {
+
+    private static ApplicationContext context;
+
+    /**
+     * Returns the Spring managed bean instance of the given class type if it exists.
+     * Returns null otherwise.
+     * @param beanClass
+     * @return
+     */
+    public static <T extends Object> T getBean(Class<T> beanClass) {
+        return context.getBean(beanClass);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+
+        // store ApplicationContext reference to access required beans later on
+        SpringContext.context = context;
+    }
+}
+```
+
+Now you can use the above SpringContext class within your pojo to retrieve any spring bean via its static
+getBean method. In our example I am getting the RestHelper spring managed bean by which I can make API
+calls to the 3rd party REST end-point. Since we wanted to make the API call only when required and only once 
+per each message, make sure you call the end-point within an if condition which is unique to the message, in 
+our example below, customerId is unique to each message and getting pojoMap as response data from API.   
+
+
+```
+package com.concepts.techgry;
+
+import com.concepts.techgry.SpringContext;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Map;
+
+/**
+ * @author https://techgry.com
+ * @created 10/29/2021
+ */
+
+/*
+ * NOTE:  This java class should NEVER be made a spring bean as it
+ *      should be initialized for every new kafka message.
+ */
+@Slf4j
+public class Pojo {
+
+    private Map<String, String> pojoMap;
+    private Integer customerId;
+
+    public Map<String, String> getPojoMap(Integer customerId) {
+        if(customerId == null) {
+            return null;
+        }
+        if(this.customerId == null || !this.customerId.equals(customerId)) {
+            log.info("YES getPojoMap API CALL for customerId : {} ", customerId);
+            RestHelper restHelper = SpringContext.getBean(RestHelper.class);
+            this.pojoMap = restHelper.getPojoMap(customerId);
+            this.customerId = customerId;
+            if (pojoMap == null || pojoMap.isEmpty()) {
+                return null;
+            }
+        } else {
+            log.info("NO getPojoMap API CALL for customerId : {} ", customerId);
+        }
+        return pojoMap;
+    }
+
+    public String getPojoValue(Integer customerId, String pojoKey){
+        String value = null;
+        Map<String, String> pojoMap = getPojoMap(customerId);
+        if (!pojoMap.isEmpty() && !pojoMap.get(pojoKey).isEmpty()) {
+            value = pojoMap.get(pojoKey).trim();
+        }
+        return value;
+    }
+}
+
+```
+
+Here is the RestHelper class which is used to make the actual REST API call.   
+
+```
+package com.concepts.techgry;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author https://techgry.com
+ * @created 10/29/2021
+ */
+
+@Component
+@Slf4j
+public class RestHelper {
+
+    @Value("${rest.url}")
+    private String restURL;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    public Map getPojoMap(Integer customerID) {
+        var objectMapper = new ObjectMapper();
+        var headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        try {
+            HttpEntity<String> request = new HttpEntity<String>(headers);
+            ResponseEntity<String> responseEntity = restTemplate.exchange(restURL + "?customerID=" + customerID, HttpMethod.POST, request, String.class);
+            log.info("RestHelper.getPojoMap API ResponseCode {}, values: {}", responseEntity.getStatusCode(), responseEntity.getBody());
+            if (responseEntity.getStatusCode().is2xxSuccessful()) {
+                return objectMapper.readValue(responseEntity.getBody(), HashMap.class);
+            }
+        } catch (HttpStatusCodeException e) {
+            log.error("RestHelper.HttpStatusCodeException with rest url access for customerID :: {} :: getPojoMap :: {} :: {}", customerID, e.getMessage(), e.getStackTrace());
+        } catch (ResourceAccessException e) {
+            log.error("RestHelper.Issue with P2 url access for customerID :: {} :: getPojoMap :: {} :: {}", customerID, e.getMessage(), e.getStackTrace());
+        } catch (Exception e) {
+            log.error("RestHelper.Failed to getPojoMap for customerID :: {} :: {} :: {}", customerID, e.getMessage(), e.getStackTrace());
+        }
+        return null;
+    }
+}
+
+```
+
+Here is the Client Class or Kafka Consumer   
+
+```
+
+package com.concepts.techgry;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author https://techgry.com
+ * @created 10/29/2021
+ */
+@Slf4j
+@Service
+public class KafkaConsumer {
+    
+    @Autowired
+    ServiceOne serviceOne;
+    
+    @Autowired
+    ServiceTwo serviceTwo;
+
+    @KafkaListener(topics = "#{'${kafka.topic.billingTopic}'}")
+    public void receive(String record,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partition,
+                        @Header(KafkaHeaders.OFFSET) Long offset,
+                        Acknowledgment acknowledgment) {
+        MessageObj messageObj = mapper.readValue(record, MessageObj.class);
+        PojoMap pojoMap = new PojoMap();
+        String customerId = messageObj.getCustomerId();
+        String keyOne = "key1";
+        String pojoValueOne = serviceOne.methodOne(customerId, keyOne, pojoMap);
+        String keyTwo = "key2";
+        String pojoValueTwo = serviceTwo.methodTwo(customerId, keyTwo, pojoMap);
+    }
+}
+
+```
+
+Here are the Services within which you would need the response data of REST end-point:   
+
+```
+@Service
+public class ServiceOne {
+
+    public String methodOne(String customerId, String keyOne, PojoMap pojoMap){
+        String pojoValueOne = pojoMap.getPojoValue(customerId, keyOne);
+        // do something with pojoValueOne or return it
+        return pojoValueOne;
+    }
+}
+
+```
+
+```
+@Service
+public class ServiceTwo {
+
+    public String methodTwo(String customerId, String keyTwo, PojoMap pojoMap){
+        String pojoValueTwo = pojoMap.getPojoValue(customerId, keyTwo);
+        // do something with pojoValueTwo or return it
+        return pojoValueTwo;
+    }
+}
+
+```
+
+
