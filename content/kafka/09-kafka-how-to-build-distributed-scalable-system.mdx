@@ -1,0 +1,47 @@
+---
+title: "How to build distributed scalable system with Kafka"
+metaTitle: "How to build distributed scalable system with Kafka"
+metaDescription: "How to build distributed scalable system with Kafka Concurrency? "
+---
+
+### How to build a distributed scalable system with Kafka?
+
+Apache Kafka can be used for both stream-processing as well as message processing.  The following 
+describes how we can build a distributed scalable message processing system with Kafka.     
+
+With previous tutorials on how Kafka messaging system works, you should now have a better understanding 
+of its scalability and distributed architecture.  To go into further details of how we can leverage these features 
+to build a scalable system let us take a hypothetical example of processing orders.       
+
+Let us assume the name of the topic within which these orders are enqueued is **ordersTopic**.      
+
+Now the goal is to have these messages distributed across multiple consumers 
+and within each consumer have a certain number of threads process them in parallel.   
+
+For us to achieve the above goal here are the steps to follow:   
+
+1.  During the creation of topic make sure you have created the topic with say n partitions.    
+2.  Assume you have 4 instances of the microservice running.   
+3.  If your kafka concurrency property within each microservice is defined as c, 
+
+Then here is how it works :   
+
+```
+Partitions(n)  |   Instances    |    Concurrency(c)  |   Total Parallel processes   
+               |                | (Threads per Inst) |   
+   16          |       4        |       4            |   16   
+   32          |       4        |       8            |   32   
+   48          |       4        |      12            |   48    
+   64          |       4        |      24            |   64   
+
+``` 
+
+With the above distribution if there are 480 messages inserted in to a topic of 48 partitions,  based on the 
+round-robin strategy each partition will be assigned 10 messages each, and these 480 messages will be distributed 
+across 4 instances with each instance consuming 120 messages and these 120 messages will be processed across 12 threads.   
+
+At a given point of time there will be 48 messages processed in parallel distributed across 4 instances with 12 threads 
+within each instance.   
+
+
+

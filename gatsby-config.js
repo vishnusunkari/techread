@@ -72,7 +72,10 @@ if (config.header.search && config.header.search.enabled && config.header.search
 if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
   plugins.push({
       resolve: `gatsby-plugin-manifest`,
-      options: {...config.pwa.manifest},
+      options: {
+        ...config.pwa.manifest,
+        icon: `${__dirname}/src/components/images/logo.svg`
+      },
   });
   plugins.push({
     resolve: 'gatsby-plugin-offline',
