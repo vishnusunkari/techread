@@ -62,8 +62,8 @@ for j in range(10):
     
 ```
 
-Here is how the data persisted on the SQLite Database with and without acknowledgements where
-Acknowledged is status=5    (when preId = q.ack(task) is enabled in the above code)     
-Unacknowledged is status=2  (when preId = q.ack(task) is commented in the above code)       
+Here is how the data is persisted on the SQLite Database with and without acknowledgements where       
+status=5    (Acknowledged when preId = q.ack(task) is enabled in the above code)        
+status=2  (Unacknowledged when preId = q.ack(task) is commented in the above code)            
 
 ![Queue data on SQLite DB](queue-data-on-disk.png "Queue data on SQLite DB")     
