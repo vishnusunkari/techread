@@ -41,8 +41,8 @@
 <url> <loc>https://techgry.com/aws/11-aws-efs</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/14-aws-opsworks</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/aws/15-aws-elasticbeanstalk</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/concepts/04-save-queue-data-on-to-disk</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kubernetes</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kubernetes/01-more-pods-on-nodes</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
