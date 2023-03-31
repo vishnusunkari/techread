@@ -2,7 +2,7 @@ const config = {
   gatsby: {
     pathPrefix: '/',
     siteUrl: 'https://techgry.com',
-    gaTrackingId: 'UA-168648961-2',
+    gaTrackingId: 'G-14YYX9YG4M',
     trailingSlash: false,
   },
   header: {
