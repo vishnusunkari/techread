@@ -41,7 +41,7 @@ const plugins = [
     resolve: `gatsby-plugin-gtag`,
     options: {
       // your google analytics tracking id
-      trackingId: 'UA-168648961-2',
+      trackingId: 'G-14YYX9YG4M',
       // Puts tracking script in the head instead of the body
       head: true,
       // enable ip anonymization
