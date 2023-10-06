@@ -1,0 +1,19 @@
+---
+title: "How to integrate kubecost with your kubernetes cluster"
+metaTitle: "How to integrate kubecost with your kubernetes cluster"
+metaDescription: "How to integrate kubecost with your kubernetes cluster ?How to install kubecost ?  How to get running with kubecost ?"
+---
+
+### How to integrate kubecost with your kubernetes cluster
+
+#### How to install kubecost within a kubernetes cluster
+
+The following helm command will install kubecost in a namespace called kubecost
+
+```
+helm upgrade --install kubecost \
+  --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
+  --namespace kubecost --create-namespace
+```
+
+
