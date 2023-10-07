@@ -48,11 +48,11 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/2619113677.json",
-    "revision": "3c4df7c325d0b6c5c576ca722f9c8788"
+    "revision": "25a7c7ef34617c68e7ed36554d3e3377"
   },
   {
     "url": "page-data/sq/d/3706406642.json",
-    "revision": "7782dac284a4e2686214070f0c8f54a0"
+    "revision": "6abaa8119395c019d4b3ba751d0794d9"
   },
   {
     "url": "page-data/sq/d/417421954.json",
