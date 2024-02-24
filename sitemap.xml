@@ -7,7 +7,6 @@
 <url> <loc>https://techgry.com/kubernetes</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/terms-and-conditions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://techgry.com/pages/about-me</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/disclaimer</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kafka/00-what-is-kafka</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/pages/privacypolicy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -48,4 +47,6 @@
 <url> <loc>https://techgry.com/security/01-aws-private-ca-private-key</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://techgry.com/kubernetes/02-kubecost-integration-with-kubernetes</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/pages/about-me</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://techgry.com/aws/16-aws-savings-plans</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
