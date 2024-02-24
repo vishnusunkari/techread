@@ -1,0 +1,50 @@
+---
+title: "What is Kubecost and how to integrate kubecost with kubernetes"
+metaTitle: "How to integrate kubecost with your kubernetes cluster and access it using a url endpoint"
+metaDescription: "What is Kubecost ? How to integrate kubecost with your kubernetes cluster and access it using a url endpoint? 
+How to install kubecost and access it using a url endpoint ?  How to get running with kubecost ?
+How to configure a url or endpoint to kubecost dashboard ? How to make kubecost accessible using a url ?"
+---
+
+### How to integrate kubecost within your kubernetes cluster   
+
+** What is Kubecost ? **
+
+Kubernetes is a popular open-source container orchestration platform used for automating the deployment, scaling, 
+and management of containerized applications. Managing costs in a Kubernetes environment can be complex due to the 
+dynamic nature of containerized workloads.    
+
+Kubecost provides insights into resource utilization, allowing users to understand how resources are being 
+utilized by different applications and teams within the cluster.  This information is crucial for optimizing 
+infrastructure usage and controlling costs, especially in large and complex Kubernetes deployments.   
+
+** Install kubecost within a kubernetes cluster **
+The following helm command will install kubecost in a namespace called kubecost   
+
+```
+helm upgrade --install kubecost \
+  --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
+  --namespace kubecost --create-namespace
+```
+
+You should now be able to access kubecost dashboard by port-forwarding as follows:   
+
+```
+kubectl port-forward --namespace kubecost deployment/kubecost-cost-analyzer 9090
+Access kubecost at http://127.0.0.1:9090
+```
+But now you might want to make this kubecost dashboard accessible by a url.
+Inorder to have an end-point for kubecost first you need to create a DNS Record and point it as an alias to the Load balancer 
+of the ingress-nginx-controller service in your kubernetes cluster.   
+
+Get the load-balancer details by getting the ingress service, in this case we are using nginx ingress controller :   
+
+```
+kubectl get svc -n <ingress-namespace>
+```
+
+Create an AWS Route53 DNS record "kubecost.dev.company.com" for an existing hosted zone : dev.company.com
+and during the creation make it an alias pointing to your load balancer that you got in the previous step.    
+
+Now you should be able to access your kubecost dashboard using the url : http://kubecost.dev.company.com    
+
