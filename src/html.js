@@ -21,6 +21,23 @@ export default class HTML extends React.Component {
             <link rel="shortcut icon" type="image/svg" href={config.siteMetadata.favicon} />
           ) : null}
           <noscript key="noscript"></noscript>
+          {/* Google Analytics 4 - data-cfasync="false" prevents Cloudflare Rocket Loader from deferring these scripts */}
+          <script
+            async
+            data-cfasync="false"
+            src={`https://www.googletagmanager.com/gtag/js?id=${config.gatsby.gaTrackingId}`}
+          />
+          <script
+            data-cfasync="false"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${config.gatsby.gaTrackingId}', { send_page_view: true });
+              `,
+            }}
+          />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
